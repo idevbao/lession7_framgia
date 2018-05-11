@@ -10,16 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var FirstVCLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(doSomethingAfterNotified),
+                                               name: NSNotification.Name(rawValue: myNotificationKey),
+                                               object: nil) }
+    
+    @objc func doSomethingAfterNotified() {
+        print("I've been notified")
+        FirstVCLabel.text = "Damn, I feel your spark 😱"
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
 }
 
